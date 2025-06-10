@@ -1,45 +1,47 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect } from "react";
 import { alertaConfirmar } from "../helpers/funciones";
 import { Link } from "react-router-dom";
+import Busqueda from "../components/Busqueda";
 
-let suscripcionesAPI = "https://api-prueba-uno.onrender.com/suscripciones"
+const suscripcionesAPI = "https://api-prueba-uno.onrender.com/suscripciones";
+
 function GestionSuscripciones() {
-    const [subs, setSubs] = useState([])
-    let usuarioLogueado = JSON.parse(localStorage.getItem("usuario"));
+    const [subs, setSubs] = useState([]);
+    const [busqueda, setBusqueda] = useState("");
+    const usuarioLogueado = JSON.parse(localStorage.getItem("usuario"));
 
-    function getSubs() {
-        fetch(suscripcionesAPI)
-            .then((response) => response.json())
-            .then((data) => setSubs(data))
-            .catch((error) => console.log(error));
-    }
     useEffect(() => {
-        getSubs();
+        fetch(suscripcionesAPI)
+            .then((res) => res.json())
+            .then((data) => setSubs(data))
+            .catch((err) => console.log(err));
     }, []);
 
-    function filtrarSuscripciones() {
-        let suscripcionesFiltradas = subs.filter(
-            (item) => item.usuarioId == usuarioLogueado.id
+    const suscripcionesFiltradas = subs
+        .filter((item) => item.usuarioId === usuarioLogueado.id)
+        .filter((item) =>
+            item.servicio.toLowerCase().includes(busqueda.toLowerCase())
         );
-        console.log(suscripcionesFiltradas);
-        return suscripcionesFiltradas;
-    }
-
-    let suscripcionesFiltradas = filtrarSuscripciones();
 
     function eliminarSuscripcion(id) {
-        alertaConfirmar(id, suscripcionesAPI, getSubs);
-
+        alertaConfirmar(id, suscripcionesAPI, () => {
+            fetch(suscripcionesAPI)
+                .then((res) => res.json())
+                .then((data) => setSubs(data));
+        });
     }
 
     return (
-        <div >
+        <div>
+            <Busqueda busqueda={busqueda} setBusqueda={setBusqueda} />
+
             <div className="flex justify-between items-center mb-4">
                 <h2 className="text-2xl font-semibold">Suscripciones</h2>
                 <Link to="/home/agregar" className="bg-green-600 text-white px-4 py-2 rounded-xl">
                     + Nueva Suscripción
                 </Link>
             </div>
+
             <div className="min-h-screen bg-[#e8e8e8] flex items-center justify-center px-4 py-8">
                 <div className={`grid gap-8 justify-items-center ${suscripcionesFiltradas.length === 1 ? 'grid-cols-1' : 'grid-cols-1 sm:grid-cols-2'}`}>
                     {suscripcionesFiltradas.map((item) => (
@@ -82,10 +84,7 @@ function GestionSuscripciones() {
                 </div>
             </div>
         </div>
-
-
-
-    )
+    );
 }
 
-export default GestionSuscripciones
+export default GestionSuscripciones;

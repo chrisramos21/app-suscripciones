@@ -33,7 +33,7 @@ export function alertaGeneral(titulo, mensaje, icono) {
   });
 }
 
-export function alertaConfirmar(id, apiEnvios, getEnvios) {
+export function alertaConfirmar(id, apiSuscripciones, getSubs) {
   Swal.fire({
     title: "Are you sure?",
     text: "You won't be able to revert this!",
@@ -44,10 +44,10 @@ export function alertaConfirmar(id, apiEnvios, getEnvios) {
     confirmButtonText: "Yes, delete it!",
   }).then((result) => {
     if (result.isConfirmed) {
-      fetch(apiEnvios + "/" + id,  {
+      fetch(apiSuscripciones + "/" + id,  {
       method: "DELETE"
     }).then(() => {
-      getEnvios()
+      getSubs()
     })
       Swal.fire({
         title: "Deleted!",

@@ -72,7 +72,7 @@ function EditarSuscripciones() {
 
                     <div className="space-y-5">
                         <div>
-                            <label className="block mb-1 text-sm font-medium text-gray-700">Servicio</label>
+                            <label className="block mb-1 text-sm font-medium text-gray-700"></label>
                             <input
                                 onChange={(e) => setServicio(e.target.value)}
                                 value={servicio}
@@ -83,7 +83,7 @@ function EditarSuscripciones() {
                         </div>
 
                         <div>
-                            <label className="block mb-1 text-sm font-medium text-gray-700">Costo</label>
+                            <label className="block mb-1 text-sm font-medium text-gray-700"></label>
                             <input
                                 onChange={(e) => setCosto(e.target.value)}
                                 value={costo}
@@ -95,7 +95,7 @@ function EditarSuscripciones() {
                         </div>
 
                         <div>
-                            <label className="block mb-1 text-sm font-medium text-gray-700">Moneda</label>
+                            <label className="block mb-1 text-sm font-medium text-gray-700"></label>
                             <input
                                 onChange={(e) => setMoneda(e.target.value)}
                                 value={moneda}
