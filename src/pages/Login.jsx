@@ -49,7 +49,7 @@ function Login() {
             let usuario = {
                 nombre: getName,
                 correo: getEmail,
-                contrasena: getPassword,
+                password: getPassword,
             };
             fetch(usuarioAPI, {
                 method: "POST",
@@ -87,7 +87,7 @@ function Login() {
                                         placeholder="Password"
                                         type="password"
                                     />
-                                    <button onClick={iniciarSesion} className="flip-card__btn">Let's go!</button>
+                                    <button type="button" onClick={iniciarSesion} className="flip-card__btn">Let's go!</button>
                                 </form>
                             </div>
                             <div className="flip-card__back">
@@ -113,7 +113,7 @@ function Login() {
                                         placeholder="Password"
                                         type="password"
                                     />
-                                    <button onClick={registrarUsuario} className="flip-card__btn">Confirm!</button>
+                                    <button type="button" onClick={registrarUsuario} className="flip-card__btn">Confirm!</button>
                                 </form>
                             </div>
                         </div>

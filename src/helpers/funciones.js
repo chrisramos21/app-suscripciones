@@ -16,8 +16,12 @@ export function alertaRedireccion(redireccion, mensaje, ruta) {
     },
     willClose: () => {
       clearInterval(timerInterval);
-      redireccion(ruta);
     },
+  }).then((result) => {
+    // Solo redirige si el alert terminó normalmente (no fue cancelado)
+    if (result.dismiss === Swal.DismissReason.timer) {
+      redireccion(ruta);
+    }
   });
 }
 

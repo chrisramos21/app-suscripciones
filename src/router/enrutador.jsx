@@ -13,7 +13,7 @@ export let enrutador = [
         element: <RutaProtegida componente = {<Home/>} />,
         children:[
             {
-                path:"envios",
+                path:"suscripciones",
                 element:<GestionSuscripciones/>
             },
             {
