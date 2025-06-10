@@ -44,7 +44,7 @@ function GestionSuscripciones() {
                                         {item.servicio}
                                     </h2>
                                     <p className="mt-2 text-sm text-gray-500">{usuarioLogueado.nombre}</p>
-                                    <p className="mt-2 text-sm text-gray-500">{item.fechaInicio}</p>
+                                    <p className="mt-2 text-sm text-gray-500">{item.fechaInicio} hasta {item.fechaRenovacion}</p>
                                 </div>
                                 <div className="mt-6">
                                     <p>
