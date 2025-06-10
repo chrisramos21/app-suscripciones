@@ -5,6 +5,13 @@
 <p align="left">Es una aplicación web creada con el objetivo de facilitar el registro, visualización y administración de suscripciones. Fue diseñada como proyecto académico para demostrar el uso de rutas protegidas, autenticación, enrutamiento entre componentes y manejo de interfaz amigable en una SPA (Single Page Application).</p>
 
 ###
+<h2 align ="left"> Ejecución del proyecto </h2>
+
+###
+
+<p aling ="left">Link de vercel: https://despliegue-suscripcioneschristian.vercel.app/<br></br>Frontend: Vite + React (puerto por defecto: http://localhost:5173)</p>
+
+###
 
 <h2 align="left">🖊️Descripción</h2>
 
