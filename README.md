@@ -9,7 +9,7 @@
 
 ###
 
-<p aling ="left">Link de vercel: https://despliegue-suscripcioneschristian.vercel.app/<br></br>Frontend: Vite + React (puerto por defecto: http://localhost:5173)</p>
+<p aling ="left">Link de vercel: https://despliegue-suscripcioneschristian.vercel.app/<br></br>Frontend: Vite + React (puerto por defecto: http://localhost:5173)<br></br>Backend: https://api-prueba-uno.onrender.com/<br></br>Usar usuario por defecto</p>
 
 ###
 
