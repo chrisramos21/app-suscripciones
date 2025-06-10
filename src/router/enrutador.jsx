@@ -3,6 +3,7 @@ import RutaProtegida from '../components/RutaProtegida'
 import Home from '../pages/Home'
 import GestionSuscripciones from '../pages/GestionSuscripciones'
 import EditarSuscripciones from '../pages/EditarSuscripciones'
+import AgregarSuscripciones from '../pages/AgregarSuscripciones'
 export let enrutador = [
     {
         path: '/',
@@ -19,6 +20,10 @@ export let enrutador = [
             {
                 path:"editar/:id",
                 element: <EditarSuscripciones/>
+            },
+            {
+                path: "agregar",
+                element: <AgregarSuscripciones />
             }
         ]
     }
