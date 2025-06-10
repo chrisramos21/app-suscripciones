@@ -1,21 +1,31 @@
 import { useState, useEffect } from "react";
 import "./Login.css"
 import { useNavigate } from "react-router-dom";
-import { useFetch } from "../helpers/useFetch";
+import { alertaRedireccion, alertaGeneral, generarToken } from "../helpers/funciones"
 
 const usuarioAPI = "https://api-prueba-uno.onrender.com/usuarios"
 function Login() {
-    const [getPassword, setPassword] = useState("");
     const [getName, setName] = useState("");
+    const [getPassword, setPassword] = useState("");
     const [getEmail, setEmail] = useState("");
-    const {data} = useFetch(usuarioAPI)
-    let redireccion = useNavigate();
+    const [usuarios, setUsuarios] = useState([]);
 
+    let redireccion = useNavigate()
+    function getUsuarios() {
+        fetch(usuarioAPI)
+            .then((response) => response.json())
+            .then((data) => setUsuarios(data))
+            .catch((error) => console.log(error));
+    }
+
+    useEffect(() => {
+        getUsuarios();
+    }, []);
 
 
     function buscarUsuario() {
         let usuarioEncontrado = usuarios.find(
-            (item) => getUser == item.usuario && getPassword == item.contrasena
+            (item) => getName == item.nombre && getPassword == item.password
         );
         return usuarioEncontrado;
     }
@@ -30,8 +40,8 @@ function Login() {
         }
     }
     function registrarUsuario() {
-        let auth = data.some(
-            (item) => item.correo == getEmail || item.usuario == getUser
+        let auth = usuarios.some(
+            (item) => item.correo == getEmail || item.nombre == getName
         );
         if (auth) {
             alertaGeneral("Error", "Usuario ya existe en la base de datos", "Error");
@@ -41,7 +51,7 @@ function Login() {
                 correo: getEmail,
                 contrasena: getPassword,
             };
-            fetch(apiUsuario, {
+            fetch(usuarioAPI, {
                 method: "POST",
                 body: JSON.stringify(usuario),
             }).then(() => {
@@ -64,41 +74,46 @@ function Login() {
                                 <div className="title">Log in</div>
                                 <form className="flip-card__form" action="">
                                     <input
+                                        onChange={(e) => setName(e.target.value)}
                                         className="flip-card__input"
                                         name="Name"
                                         placeholder="Name"
                                         type="text"
                                     />
                                     <input
+                                        onChange={(e) => setPassword(e.target.value)}
                                         className="flip-card__input"
                                         name="password"
                                         placeholder="Password"
                                         type="password"
                                     />
-                                    <button className="flip-card__btn">Let's go!</button>
+                                    <button onClick={iniciarSesion} className="flip-card__btn">Let's go!</button>
                                 </form>
                             </div>
                             <div className="flip-card__back">
                                 <div className="title">Sign up</div>
                                 <form className="flip-card__form" action="">
                                     <input
+                                        onChange={(e) => setName(e.target.value)}
                                         className="flip-card__input"
                                         placeholder="Name"
                                         type="text"
                                     />
                                     <input
+                                        onChange={(e) => setEmail(e.target.value)}
                                         className="flip-card__input"
                                         name="email"
                                         placeholder="Email"
                                         type="email"
                                     />
                                     <input
+                                        onChange={(e) => setPassword(e.target.value)}
                                         className="flip-card__input"
                                         name="password"
                                         placeholder="Password"
                                         type="password"
                                     />
-                                    <button className="flip-card__btn">Confirm!</button>
+                                    <button onClick={registrarUsuario} className="flip-card__btn">Confirm!</button>
                                 </form>
                             </div>
                         </div>
