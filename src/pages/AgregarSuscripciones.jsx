@@ -12,7 +12,7 @@ function AgregarSuscripciones() {
     const [renovacion, setRenovacion] = useState("");
     const redireccion = useNavigate();
 
-    function handleSubmit(e) {
+    function agregarSubs(e) {
         e.preventDefault();
         const usuarioLogueado = JSON.parse(localStorage.getItem("usuario"));
 
@@ -44,7 +44,7 @@ function AgregarSuscripciones() {
 
     return (
         <section className="min-h-screen flex items-center justify-center">
-            <form onSubmit={handleSubmit} className="bg-white shadow-md p-8 rounded-xl space-y-4 w-full max-w-md">
+            <form onSubmit={agregarSubs} className="bg-white shadow-md p-8 rounded-xl space-y-4 w-full max-w-md">
                 <h2 className="text-xl font-bold text-center">Agregar Suscripción</h2>
                 <input
                     type="text"
